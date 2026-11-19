@@ -1,0 +1,46 @@
+{
+  "name": "wanderer-render-ships",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Generate CDN-ready hologram ship images from EVE Online type renders.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:viewer": "vite build --config vite.config.ts",
+    "generate": "tsx src/cli.ts",
+    "generate:sample": "tsx src/cli.ts --limit 3 --size 256 --force",
+    "serve": "tsx src/serve.ts",
+    "ships:render": "tsx src/render-3d-ships.ts",
+    "ships:list": "tsx src/render-3d-ships.ts --dry-run",
+    "ships:render:sample": "tsx src/render-3d-ships.ts --ids 587,605,641 --force",
+    "ships:render:megathron-family": "tsx src/render-3d-ships.ts --families 641,17740,28661 --output dist/ships-3d/megathron-family --force",
+    "models:import:eve": "tsx src/import-eve-model.ts",
+    "test": "tsx --test test/**/*.test.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.viewer.json",
+    "viewer": "vite --config vite.config.ts",
+    "viewer:batch": "tsx src/viewer-smoke.ts --samples",
+    "viewer:batch:wireframe": "tsx src/viewer-smoke.ts --samples --wireframe",
+    "viewer:preview": "vite preview --config vite.config.ts",
+    "viewer:smoke": "tsx src/viewer-smoke.ts"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "sharp": "^0.35.5",
+    "three": "^0.180.0",
+    "unzipper": "^0.12.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/three": "^0.180.0",
+    "@types/unzipper": "^0.10.11",
+    "playwright-core": "^1.64.1",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^7.1.9"
+  }
+}

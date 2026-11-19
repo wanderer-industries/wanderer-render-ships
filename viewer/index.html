@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wanderer Ship Model Viewer</title>
+  </head>
+  <body>
+    <main class="layout">
+      <section class="viewport-panel">
+        <canvas id="viewport"></canvas>
+        <div id="status" class="status">Ready</div>
+      </section>
+
+      <aside class="controls">
+        <header>
+          <p class="eyebrow">Wanderer render laboratory</p>
+          <h1>EVE ship model viewer</h1>
+          <p>Load a GLB by type ID, rotate it into a repeatable pose and export the current frame.</p>
+        </header>
+
+        <form id="type-form" class="stack">
+          <label>
+            EVE type ID
+            <input id="type-id" name="typeId" inputmode="numeric" value="587" />
+          </label>
+          <button type="submit">Load model</button>
+        </form>
+
+        <details>
+          <summary>Custom model source</summary>
+          <div class="stack details-body">
+            <label>
+              GLB/GLTF URL
+              <input id="model-url" name="modelUrl" placeholder="https://…/ship.glb" />
+            </label>
+            <button id="load-url" type="button" class="secondary">Load URL</button>
+            <label class="file-control">
+              Open local GLB/GLTF
+              <input id="model-file" type="file" accept=".glb,.gltf,model/gltf-binary,model/gltf+json" />
+            </label>
+          </div>
+        </details>
+
+        <section class="stack">
+          <div class="section-title">
+            <h2>Orientation</h2>
+            <button id="side-right" type="button" class="secondary compact">Nose right</button>
+          </div>
+
+          <label>
+            Render mode
+            <select id="render-mode">
+              <option value="phantom-gray" selected>Phantom gray</option>
+              <option value="wireframe">Bright wireframe</option>
+              <option value="original">Original materials</option>
+            </select>
+          </label>
+
+          <label>
+            Pitch <output id="pitch-value">-10°</output>
+            <input id="pitch" type="range" min="-180" max="180" value="-10" />
+          </label>
+          <label>
+            Yaw <output id="yaw-value">90°</output>
+            <input id="yaw" type="range" min="-180" max="180" value="90" />
+          </label>
+          <label>
+            Roll <output id="roll-value">0°</output>
+            <input id="roll" type="range" min="-180" max="180" value="0" />
+          </label>
+        </section>
+
+        <section class="actions">
+          <button id="fit" type="button" class="secondary">Fit camera</button>
+          <button id="download" type="button">Download PNG</button>
+        </section>
+
+        <p class="hint">
+          Drag to orbit, scroll to zoom. The default provider uses community-converted GLB files keyed by EVE type ID.
+        </p>
+      </aside>
+    </main>
+    <script type="module" src="/main.ts"></script>
+  </body>
+</html>
